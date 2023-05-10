@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dep-exo1
+spec:
+  replicas: 2
+  selector:
+    matchLabels: 
+      app: html
+  template:
+    metadata:
+      labels:
+        app: html
+    spec:
+      volumes:
+        - name: volume-exo1
+          emptyDir:
+            sizeLimit: "500M"
+      containers:
+      - name: html
+        volumeMounts:
+          - mountPath: /Downloads
+            name: volume-exo1
+        image: nancylence/exo1
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80

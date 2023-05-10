@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: www
+spec:
+  type: ClusterIP
+  selector:
+    app: www #>> doit match avec le labels du pod.
+  ports:
+  - port: 80
+    targetPort: 80
